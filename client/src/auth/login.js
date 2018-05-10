@@ -35,7 +35,7 @@ class Login extends Component {
 	handleLoginSubmit = (e) => {
 		e.preventDefault();
 		console.log('form was submitted', this.state.email);
-		axios.post('/auth/login', this.state.password)
+		axios.post('/auth/login', this.state)
 		.then(result => {
 			console.log("SUCCESSFUL LOGIN! result.data is ", result.data)
 			localStorage.setItem('mernToken', result.data.token);
@@ -49,7 +49,7 @@ class Login extends Component {
 	handleSignupSubmit = (e) => {
 		e.preventDefault();
 		console.log('Signup form was submitted', this.state);
-		axios.post('/auth/signmeup', {
+		axios.post('/auth/signup', {
 			name: this.state.name,
 			email: this.state.email,
 			password: this.state.password })

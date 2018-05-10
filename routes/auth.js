@@ -39,23 +39,15 @@ router.post('/signup', function(req, res, next) {
   //TODO: First check if the user already exists
   User.findOne({ email: req.body.email })
   .then(function(user) {
-  	//database was a success
 	if (user) {
-		// if user exists already, prevent them from creating duplicate account. Instead they should log in.
 		return res.status(400).send('User exists already');
 	}
-	// if user does not already exist, then yay! Make new user an account
-	// req.body takes all fields from form and matches them with the name of the inputs in Signup component
 	User.create(req.body)
 	.then(function(createdUser){
-	// Make a token and send it as JSON so the user can remain logged in (make sure you've installed jsonwebtoken and express-jwt)
-	// toJSON comes from the user model
-	// everythingin the {} is an option parameter of jwt.sign(); .sign = create a new token
 		var token = jwt.sign(createdUser.toJSON(), process.env.JWT_SECRET, {
 			expiresIn: 60*60*24 //expires in 24 hours, written in seconds
 		});
 		res.send({ user: createdUser, token: token })
-		// ^ user and ^token (on left side of colon) could be called anything; now f-e has access to user and token
 	})
 	.catch(function(err){
 		console.log('err is', err)
@@ -63,7 +55,6 @@ router.post('/signup', function(req, res, next) {
 	})
   })
   .catch(function(err) {
-  // 500 errors are server errors, e.g. problem with database
   	res.status(500).send('Database Error!')
   })
 });
