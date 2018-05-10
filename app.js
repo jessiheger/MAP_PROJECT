@@ -50,8 +50,8 @@ app.use('/auth', expressJWT({
 
 // this is eventually where our React is going to live:
 app.get('*', function(req, res, next) {
-	res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')); // client = name of React dir, build = production code (will have the minified versions of our final product; can be changed to Public folder while in dv stage and changed back to build before deployment)
-	// index.html = render this html file for any and all routes not covered by '/auth'
+	res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')); 
 });
 
-module.exports = app;
+// module.exports = app;
+app.listen(process.env.PORT || 3001)

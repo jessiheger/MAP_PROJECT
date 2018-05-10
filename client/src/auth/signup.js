@@ -5,7 +5,6 @@ import axios from 'axios';
 class Signup extends Component {
 	constructor(props){
 		super(props);
-	{/* give Signup an initial state */}
 		this.state = {
 			name: '',
 			email: '',
@@ -25,19 +24,12 @@ class Signup extends Component {
 	}
 
 	handleSubmit = (e) => {
-	{/* bc we use an arrow function, the scope is still to the Sign up component*/}
 		e.preventDefault();
 		console.log('form was submitted', this.state);
-		{/* connect this function to the router.post('/signup' route in auth.js : 
-		1st parameter: URL that I want to hit
-		2nd parameter: data that I want to send
-		Will only be able to reach /auth/signup if nodemon is running*/}
 		axios.post('/auth/signup', this.state)
 		.then(result => {
 			console.log("SUCCESS!", result.data)
-			// when we sign or login, we want to set the token; adds newly received token to local storage
 			localStorage.setItem('mernToken', result.data.token);
-			// update the user with a call to App.js to do this for us (the getUser function)
 			this.props.updateUser();
 			// ^ we want to send props to the signup route
 		})
@@ -46,15 +38,13 @@ class Signup extends Component {
 		})
 	}
 
-
 	render() {
-		if(this.props.user) // if there is a logged in user
-			return (<Redirect to="/profile" />); // if you're already logged in, you dont need to sign up again
+		if(this.props.user) 
+			return (<Redirect to="/profile" />); 
 		return(
 			<div>
 				<h2>Signup As a New User!</h2>
 				<form onSubmit={this.handleSubmit}>
-				{/* handeSubmit is defined above; "this" is referring to the Signup component*/}
 					<div>
 						<input name="Name" placeholder="What is your name?" value={this.state.name} onChange={this.handleNameChange}>
 						</input>

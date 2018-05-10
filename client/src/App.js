@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
+// import './mapbox.css';
 //Import components:
 import Footer from './layout/Footer';
 import Home from './Home';
 import Login from './auth/login';
 import Nav from './layout/nav';
 import Profile from './Profile';
-import Signup from './auth/signup';
+import Trip from './Components/trip'
+import Worldview from './Components/worldview'
+
+// Material-UI
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component {
   constructor(props) {
@@ -18,7 +23,6 @@ class App extends Component {
     }
   }
 
-  // tells us that the loading has happened of the App component; simiilar to document.ready
   componentDidMount = () => {
     console.log('component did mount')
     this.getUser();
@@ -29,13 +33,11 @@ class App extends Component {
     let token = localStorage.getItem('mernToken');
     if(token){
       console.log('token found in LS', token)
-      // if there is a token in local storage, try to validate it
       axios.post('/auth/me/from/token', {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       .then(response => {
         console.log('SUCCESS!', response);
-        // if successful, assign the user the to the state
         this.setState({
           user: response.data.user
         });
@@ -43,7 +45,6 @@ class App extends Component {
       .catch(err => {
         console.log('ERROR', err);
         console.log('response', err.response);
-        // if problem, token is cleared and user gets assigned back to "null"
         localStorage.removeItem('mernToken');
         this.setState({
           user: null
@@ -59,28 +60,26 @@ class App extends Component {
     }
 }
 
-
   render() {
     return (
       <div className="App">
-      {/* Router wraps a group of routes */}
-        <Router> 
-          <div className = "container">
-            {/* Nav will display on every page, which is why it's not a <Route> */}
-            <Nav user={this.state.user} updateUser={this.getUser}/>
-            {/* Nav bar knows if there's a user or not*/}
-            <Route exact path="/" component={Home} /> 
-            <Route path="/login" component={
-              () => (<Login user={this.state.user} updateUser={this.getUser} />) 
-            } /> 
-            {/*  ^ allows the other pages to know if there's a logged in user or not*/}
-            <Route path="/signup" component={
-              () => (<Signup user={this.state.user} updateUser={this.getUser} />)} />
-              {/*  ^ allows the other pages to know if there's a signed up user or not*/}
-            <Route path="/profile" component={
-              () => (<Profile user={this.state.user} />)} />
-          </div>
-        </Router>
+        <MuiThemeProvider>
+          <Router> 
+            <div className = "container">
+              <Nav user={this.state.user} updateUser={this.getUser}/>
+              <Route exact path="/" component={Home} /> 
+              <Route path="/login" component={
+                () => (<Login user={this.state.user} updateUser={this.getUser} />) 
+              } /> 
+              <Route path="/profile" component={
+                () => (<Profile user={this.state.user} />)} />
+              <Route path="/newtrip" component={
+                  () => (<Trip user={this.state.user} />)} />
+              <Route path="/worldview" component={
+                () => (<Worldview user={this.state.user} />)} />
+            </div>
+          </Router>
+        </MuiThemeProvider>
         <Footer />
       </div>
     );

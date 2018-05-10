@@ -1,11 +1,13 @@
-// in app, put it in compoenents folder
-
 import React, { Component } from 'react';
+import Worldview from './Components/worldview';
 
 class Home extends Component {
 	render() {
 		return(
-			<p>HOME PAGE!!!</p>
+			<div>
+				<p>HOME PAGE!!!</p>
+				<Worldview />
+			</div>
 		);
 	}
 }

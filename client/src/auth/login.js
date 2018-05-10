@@ -1,64 +1,142 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import axios from 'axios';
+import {Tabs, Tab} from 'material-ui/Tabs';
+
+// MATERIAL UI
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 class Login extends Component {
 	constructor(props){
 		super(props);
-	{/* give Signup an initial state */}
 		this.state = {
 			email: '',
-			password: ''
+			password: '',
+			value: 'login'
 		};
 	}
-	handleEmailChange =(e) => {
+
+	handleTabChange = (value) => {
+		this.setState({ value: value });
+	}
+
+	handleEmailChange = (e) => {
 		this.setState({ email: e.target.value });
 	}
-	handlePasswordChange =(e) => {
+	handlePasswordChange = (e) => {
 		this.setState({ password: e.target.value });
 	}
 
-	handleSubmit = (e) => {
-	{/* bc we use an arrow function, the scope is still to the Sign up component*/}
+	handleNameChange = (e) => {
+		this.setState({ name: e.target.value });
+	}
+
+	handleLoginSubmit = (e) => {
 		e.preventDefault();
-		console.log('form was submitted', this.state);
-		{/* connect this function to the router.post('/signup' route in auth.js : 
-		1st parameter: URL that I want to hit
-		2nd parameter: data that I want to send
-		Will only be able to reach /auth/signup if nodemon is running*/}
-		axios.post('/auth/login', this.state)
+		console.log('form was submitted', this.state.email);
+		axios.post('/auth/login', this.state.password)
 		.then(result => {
-			console.log("SUCCESS! result.data is ", result.data)
-			// when we sign up or login, we want to set the token; adds newly received token to local storage
+			console.log("SUCCESSFUL LOGIN! result.data is ", result.data)
 			localStorage.setItem('mernToken', result.data.token);
-			// update the user with a call to App.js to do this for us (the getUser function)
 			this.props.updateUser();
-			// ^ we want to send props to the login route
 		})
 		.catch(err => {
-			console.log("ERROR", err.response.data)
+			console.log("LOGIN ERROR", err.response.data)
+		});
+	}
+
+	handleSignupSubmit = (e) => {
+		e.preventDefault();
+		console.log('Signup form was submitted', this.state);
+		axios.post('/auth/signmeup', {
+			name: this.state.name,
+			email: this.state.email,
+			password: this.state.password })
+		.then(result => {
+			console.log("SUCCESSFUL SIGNUP! result.data is ", result.data)
+			localStorage.setItem('mernToken', result.data.token);
+			this.props.updateUser();
+		})
+		.catch(err => {
+			console.log("SIGNUP ERROR", err.response.data)
 		});
 	}
 
 	render() {
-		if(this.props.user) {// if there is a logged in user
-			return (<Redirect to="/profile" />); // if you're already logged in, you dont need to sign up again
+		if(this.props.user) {
+			return (<Redirect to="/profile" />);
 		}
 		return(
-			<div className="login">
-				<h2>Login!</h2>
-				<form onSubmit={this.handleSubmit}>
-				{/* handeSubmit is defined above; "this" is referring to the Signup component*/}
+			<Tabs 
+				className="login"
+				value={this.state.value}
+				onChange={this.handleTabChange}>
+				<Tab label="Login" value="login">
 					<div>
-						<input name="Email" placeholder="What is your email?" value={this.state.email} onChange={this.handleEmailChange}>
-						</input>
+						<h2>Login!</h2>
 					</div>
 					<div>
-						<input name="Password" type="password" placeholder="What is your password?" value={this.state.password1} onChange={this.handlePasswordChange} />
+						<TextField
+							name="email"
+							type="email" 
+							floatingLabelText="Email"
+							value={this.state.email} 
+							onChange={this.handleEmailChange}>
+						</TextField>
 					</div>
-					<input type="submit" value="Log me in!" className="button" />
-				</form>
-			</div>
+					<div>
+						<TextField 
+							name="password" 
+							type="password" 
+							floatingLabelText="password" 
+							value={this.state.password} 
+							onChange={this.handlePasswordChange} >
+						</TextField>
+					</div>
+					<div>
+						<RaisedButton
+							label="Log me in!"
+							onClick={this.handleLoginSubmit} />
+					</div>
+				</Tab>
+				<Tab label="Sign Up" value="signup">
+					<div>
+						<h2>Sign Up</h2>
+					</div>
+					<div>
+						<TextField
+							name="name"
+							type="text"
+							floatingLabelText="Name"
+							value={this.state.name}
+							onChange={this.handleNameChange}>
+						</TextField>
+						<TextField
+							name="email"
+							type="email"
+							floatingLabelText="Email"
+							value={this.state.email}
+							onChange={this.handleEmailChange}>
+						</TextField>
+					</div>
+					<div>
+						<TextField 
+							name="password" 
+							type="password" 
+							floatingLabelText="Password" 
+							value={this.state.password} 
+							onChange={this.handlePasswordChange} >
+						</TextField>
+					</div>
+					<div>
+						<RaisedButton
+							label="Sign me up!"
+							onClick={this.handleSignupSubmit} 
+						/>
+					</div>
+				</Tab>
+			</Tabs>
 		);
 	}
 }
