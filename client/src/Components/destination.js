@@ -14,6 +14,10 @@ class Destination extends Component {
 		this.props.onEditDestination(this.props.destination);
 	}
 	render() {
-		const myDestinationForm
+		return (
+			<div>
+				From destination.js
+			</div>
+			);
 	}
 }
