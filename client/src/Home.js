@@ -3,6 +3,7 @@ import Worldview from './Components/worldview';
 
 class Home extends Component {
 	render() {
+		// if (this.props.user) { <--- THIS BREAKS AUTH
 		return(
 			<div>
 				<p>HOME PAGE!!!</p>
@@ -10,6 +11,7 @@ class Home extends Component {
 			</div>
 		);
 	}
+// }
 }
 
 export default Home;

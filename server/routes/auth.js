@@ -6,11 +6,11 @@ var User = require('../models/user');
 var jwt = require('jsonwebtoken');
 
 // POST /auth/login route - returns a JWT
-router.post('/login', function(req, res, next) {
+router.post('/login', function(req, res) {
   console.log('/auth/login post route', req.body);
 
   //First, find out of user exists
-  User.findOne({ email: req.body.email})
+  User.findOne({ email: req.body.email}).populate('trips')
   .then(function(user) {
 	if (!user || !user.password){
 		return res.status(403).send("User not found!");
@@ -34,10 +34,10 @@ router.post('/login', function(req, res, next) {
 });
 
 // POST /auth/signup route - create a user in the DB and then log them in
-router.post('/signup', function(req, res, next) {
+router.post('/signup', function(req, res) {
 
   //TODO: First check if the user already exists
-  User.findOne({ email: req.body.email })
+  User.findOne({ email: req.body.email }).populate('trips')
   .then(function(user) {
 	if (user) {
 		return res.status(400).send('User exists already');

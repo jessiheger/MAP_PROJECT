@@ -20,7 +20,10 @@ var userSchema = new mongoose.Schema({
     required: true,
     minlength: 5,
     maxlength: 99
-  }
+  },
+  trips: [{ref: 'Trip', type: mongoose.Schema.Types.ObjectId}]
+}, {
+  usePushEach: true
 });
 
 // Override 'toJSON' to prevent the password from being returned with the user
@@ -29,7 +32,8 @@ userSchema.set('toJSON', {
     var returnJson = { // password is purposefully missing fro this list of properties (so that it doesn't go to f-e)
       id: user._id,
       email: user.email,
-      name: user.name
+      name: user.name,
+      trips: user.trips
     };
     return returnJson;
   }
@@ -42,9 +46,12 @@ userSchema.methods.authenticated = function(password) {
 
 // Mongoose's version of a beforeCreate hook
 userSchema.pre('save', function(next) {
-  var hash = bcrypt.hashSync(this.password, 10);
-  // store the hash as the user's password
-  this.password = hash;
+  if (this.isNew) {
+    var hash = bcrypt.hashSync(this.password, 10);
+    // store the hash as the user's password
+    this.password = hash;
+  }
+  
   next();
 });
 

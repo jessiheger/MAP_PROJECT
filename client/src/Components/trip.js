@@ -1,24 +1,25 @@
 // TRIP CONTAINER WITH BOTH TRIP MAP AND TRIP TEXT
 
-// import destinationModel
-// import destinations
-// import DestinationForm 
+import TripNameForm from './TripNameForm';
+import DestinationForm from './DestinationForm';
+import React, { Component } from 'react';
 
 // This is the container for destination and trip name forms
-// Make a component that renders those
 // This is the /newtrip page 
 
 // import axios from 'axios';
-import React, { Component } from 'react';
 
 class Trip extends Component {
 	constructor(props){
-		super(props);
+		super(props)
 	}
 
 	render() {
 		return(
-			<div>TRIP PAGE</div>
+			<div>
+				<TripNameForm user={this.props.user} />
+				<DestinationForm user={this.props.user} />
+			</div>
 		);
 	}
 }

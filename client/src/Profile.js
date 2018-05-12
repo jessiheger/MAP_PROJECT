@@ -1,14 +1,17 @@
-// in app, put it in "LoggedInOnly"/compoenents folder
-
 import React, { Component } from 'react';
+import TripList from './Components/triplist';
 
 class Profile extends Component {
+	constructor(props) {
+		super(props);
+	}
 	render() {
 		if(this.props.user){
 			return(
 				<div>
 					<h2>Hello again, {this.props.user.name}!</h2>
 					<h4>Your email is {this.props.user.email}.</h4>
+					<TripList trips={this.props.user.trips}/>
 				</div>
 			);
 		}

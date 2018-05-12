@@ -4,8 +4,8 @@ import axios from 'axios';
 
 class DestinationForm extends Component {
 	constructor(props) {
-		super(props);
-		this.setState{
+		super(props)
+		this.state = {
       		landmark: '',
       		city: '',
       		state: '',
@@ -13,22 +13,27 @@ class DestinationForm extends Component {
       		image: ''
       	};
 	}
-	onLandmarkChange(event) {
+	onLandmarkChange = (event) => {
 		this.setState({
 			landmark: event.target.value,
 		})
 	}
-	onCityChange(event) {
+	onCityChange = (event) => {
 		this.setState({
 			city: event.target.value,
 		})
 	}
-	onCountryChange(event) {
+	onStateChange = (event) => {
 		this.setState({
 			state: event.target.value,
 		})
 	}
-	onImageChange(event) {
+	onCountryChange = (event) => {
+		this.setState({
+			state: event.target.value,
+		})
+	}
+	onImageChange = (event) => {
 		this.setState({
 			image: event.target.value,
 		})
@@ -36,11 +41,9 @@ class DestinationForm extends Component {
 	onSubmit = (e) => {
 		e.preventDefault();
 		console.log('form was submitted', this.state);
-		axios.post('/auth/signup', this.state) //WHAT TO PUT HERE
+		axios.post('/destination', {newDestination: this.state, user: this.props.user } ) 
 		.then(result => {
-			console.log("destination SUCCESS!", result.data)
-			localStorage.setItem('mernToken', result.data.token);
-			this.props.updateUser();
+			console.log("destination SUCCESS!", result)
 		})
 		.catch(err => {
 			console.log("ERROR", err)
@@ -48,7 +51,7 @@ class DestinationForm extends Component {
 	}
 	render(){
 		return (
-			<div className='destinationForm'>
+			<div className='DestinationForm'>
 				<form onSubmit={this.onSubmit}>
 					<div>
 						<label>Landmark</label>
@@ -62,16 +65,22 @@ class DestinationForm extends Component {
 					<div>
 						<label>City</label>
 						<input
-							autoFocus= {this.props.autoFocus}
 							onChange={this.onCityChange}
 							placeholder="Agra"
 							type="text"
 							value={(this.state.city)} />
 					</div>
 					<div>
+						<label>State</label>	
+						<input
+							onChange={this.onStateChange}
+							placeholder="Uttar Pradesh"
+							type="text"
+							value={(this.state.state)} />
+					</div>
+					<div>
 						<label>Country</label>	
 						<input
-							autoFocus= {this.props.autoFocus}
 							onChange={this.onCountryChange}
 							placeholder="India"
 							type="text"
@@ -80,7 +89,6 @@ class DestinationForm extends Component {
 					<div>
 						<label>Image Upload</label>
 						<input
-							autoFocus= {this.props.autoFocus}
 							onChange={this.onImageChange}
 							placeholder="India"
 							type="text"

@@ -9,6 +9,7 @@ import Home from './Home';
 import Login from './auth/login';
 import Nav from './layout/nav';
 import Profile from './Profile';
+import Signup from './auth/signup';
 import Trip from './Components/trip'
 import Worldview from './Components/worldview'
 
@@ -70,6 +71,9 @@ class App extends Component {
               <Route exact path="/" component={Home} /> 
               <Route path="/login" component={
                 () => (<Login user={this.state.user} updateUser={this.getUser} />) 
+              } /> 
+              <Route path="/signup" component={
+                () => (<Signup user={this.state.user} updateUser={this.getUser} />) 
               } /> 
               <Route path="/profile" component={
                 () => (<Profile user={this.state.user} />)} />

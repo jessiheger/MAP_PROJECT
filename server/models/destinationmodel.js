@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// Model for each destination ( should not include any user-specifc )
+// Model for each destination 
 var destinationSchema = new Schema (
 	{
 		landmark: {
@@ -18,7 +18,7 @@ var destinationSchema = new Schema (
 			},
 		country: {
 			type: String,
-			required: true
+			required: false
 			},
 		lat: {
 			type: Number, 

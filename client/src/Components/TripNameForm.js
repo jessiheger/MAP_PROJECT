@@ -7,7 +7,8 @@ class TripNameForm extends Component {
 		super(props)
 		this.state = {
 			name: '',
-			destinations: []
+			destinations: [],
+			trip: ''
 		};
 	}
 	onNameChange = (event) => {
@@ -23,10 +24,13 @@ class TripNameForm extends Component {
 	onSubmit = (e) => {
 		e.preventDefault();
 			console.log('form was submitted', this.state);
-		axios.post('/trip', this.state )
-		.then(result => {
-			console.log("trip name SUCCESS!", result)
-			// this.props.updateUser();
+		axios.post('/trip', {newTrip: this.state, user: this.props.user} )
+		.then(res => {
+			console.log("trip name SUCCESS!", res.data);
+			this.setState({
+				trip: res.data
+			})
+			let tripDataFromBE = res.data
 		})
 		.catch(err => {
 			console.log("ERROR", err)
@@ -40,7 +44,7 @@ class TripNameForm extends Component {
 						<label>Name your Trip!</label>
 						<input
 							onChange={this.onNameChange}
-							placeholder="My TWo Week Trip to Europe!"
+							placeholder="Trip to India!"
 							type="text"
 							value={(this.state.name)} />
 					</div>
