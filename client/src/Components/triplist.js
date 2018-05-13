@@ -10,12 +10,6 @@ class TripList extends Component {
 		this.handleClick = this.handleClick.bind(this);
 	}
 
-	// componentWillMount = () => {
-	// 	axios.get('http://localhost:3001/user/'+this.props.user.id+'/trips').then(user =>{
-	// 		console.log("user is:", user)
-	// 	})
-	// }
-
 	handleClick(e) {
 		this.setState({
 			tripId: e.target.id
@@ -29,7 +23,7 @@ class TripList extends Component {
 
 		let mappedTrips = properArray.map( (trip, id) => (<p onClick={(e) => this.handleClick(e)} id={id} key={id}>{trip.name}</p>) )
 		return (
-			<div>
+			<div> 
 				<p>THIS IS MY TRIP LIST!!</p>
 				<p>The selected trip id is {this.state.tripId}</p>
 				{mappedTrips}

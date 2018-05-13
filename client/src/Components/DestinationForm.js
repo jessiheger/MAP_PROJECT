@@ -10,7 +10,8 @@ class DestinationForm extends Component {
       		city: '',
       		state: '',
       		country: '',
-      		image: ''
+      		image: '',
+      		trip: this.props.trip
       	};
 	}
 	onLandmarkChange = (event) => {
@@ -30,7 +31,7 @@ class DestinationForm extends Component {
 	}
 	onCountryChange = (event) => {
 		this.setState({
-			state: event.target.value,
+			country: event.target.value,
 		})
 	}
 	onImageChange = (event) => {
@@ -44,6 +45,7 @@ class DestinationForm extends Component {
 		axios.post('/destination', {newDestination: this.state, user: this.props.user } ) 
 		.then(result => {
 			console.log("destination SUCCESS!", result)
+			this.props.updateTrip(this.state.trip);
 		})
 		.catch(err => {
 			console.log("ERROR", err)
@@ -85,14 +87,6 @@ class DestinationForm extends Component {
 							placeholder="India"
 							type="text"
 							value={(this.state.country)} />
-					</div>
-					<div>
-						<label>Image Upload</label>
-						<input
-							onChange={this.onImageChange}
-							placeholder="India"
-							type="text"
-							value={(this.state.image)} />
 					</div>
 					<button type='submit'>Add Destination</button>
 				</form>

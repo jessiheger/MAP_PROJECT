@@ -7,11 +7,12 @@ class Profile extends Component {
 	}
 	render() {
 		if(this.props.user){
+			console.log(this.props.trips);
 			return(
 				<div>
 					<h2>Hello again, {this.props.user.name}!</h2>
 					<h4>Your email is {this.props.user.email}.</h4>
-					<TripList trips={this.props.user.trips}/>
+					{ this.props.trips.length > 0 ? <TripList trips={this.props.trips} reFetchData={this.refetchData} /> : <p>You don't have any trips yet :( Go to New Trip to add a trip! </p>}
 				</div>
 			);
 		}
