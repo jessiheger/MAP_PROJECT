@@ -45,14 +45,14 @@ class TripNameForm extends Component {
 			<div className='TripNameForm'>
 				<form onSubmit={this.onSubmit}>
 					<div>
-						<label>Name your Trip!</label>
+						<label><h1>Give your trip a name: </h1></label>
 						<input
 							onChange={this.onNameChange}
 							placeholder="Trip to India!"
 							type="text"
 							value={(this.state.name)} />
 					</div>
-					<Button type='submit' bsStyle="info">Create Trip</Button>
+					<Button type='submit'>Create Trip</Button>
 				</form>
 			</div>		
 		)

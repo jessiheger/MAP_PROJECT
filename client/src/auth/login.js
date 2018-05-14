@@ -11,10 +11,16 @@ class Login extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
+			// name: '',
 			email: '',
 			password: ''
+			// value: 'login'
 		};
 	}
+
+	// handleTabChange = (value) => {
+	// 	this.setState({ value: value });
+	// }
 
 	handleEmailChange = (e) => {
 		this.setState({ email: e.target.value });

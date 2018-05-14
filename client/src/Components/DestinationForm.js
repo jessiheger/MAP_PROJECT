@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import { Button } from 'react-bootstrap';
+
 
 class DestinationForm extends Component {
 	constructor(props) {
@@ -88,7 +90,7 @@ class DestinationForm extends Component {
 							type="text"
 							value={(this.state.country)} />
 					</div>
-					<button type='submit'>Add Destination</button>
+					<Button type='submit'>Add Destination</Button>
 				</form>
 			</div>
 		)

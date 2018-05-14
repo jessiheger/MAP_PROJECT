@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
+import { Navbar } from 'react-bootstrap';
+
 
 class Nav extends Component {
 	handleLogout = (e) => {
@@ -28,10 +30,10 @@ class Nav extends Component {
 		}
 		return(
 			<div>
-				<nav className = "nav" >
-					<Link to="/">Home</Link>
+				<Navbar>
+						<Link to="/">Home</Link>
 					{links}
-        		</nav>
+        		</Navbar>
 			</div>
 		);
 	}

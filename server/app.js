@@ -24,6 +24,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use('/trip', require('./routes/trip'));
 app.use('/destination', require('./routes/destination'));
 app.use('/user', require('./routes/triplist'));
+app.use('/viewtrip', require('./routes/viewtrip'));
+
 
 app.use('/auth', expressJWT({
 	// make it necessary to have a token beore you can access any of these routes 

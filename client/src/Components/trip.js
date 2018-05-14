@@ -28,7 +28,7 @@ class Trip extends Component {
 		if (this.state.tripId === '') {
 			return(
 				<div>
-					<TripNameForm user={this.props.user} updateTrip={this.getTrip} reFetchData={this.props.reFetchData}/>
+					<TripNameForm user={this.props.user} updateTrip={this.getTrip} reFetchData={this.props.reFetchData} />
 				</div>
 			);
 		} 

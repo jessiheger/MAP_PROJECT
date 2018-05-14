@@ -9,8 +9,11 @@ import Login from './auth/login';
 import Nav from './layout/nav';
 import Profile from './Profile';
 import Signup from './auth/signup';
-import Trip from './Components/trip'
-import Worldview from './Components/worldview'
+import Trip from './Components/trip';
+import Worldview from './Components/worldview';
+import ViewTripContainer from './Components/viewTrip/ViewTripContainer';
+import { Navbar } from 'react-bootstrap';
+
 
 
 class App extends Component {
@@ -91,6 +94,8 @@ refetchData = () => {
                 () => (<Profile user={this.state.user} trips={this.state.trips} reFetchData={this.refetchData}/>)} />
               <Route path="/newtrip" component={
                   () => (<Trip user={this.state.user} reFetchData={this.refetchData} />)} />
+              <Route path="/viewtrip" component={
+                  () => (<ViewTripContainer user={this.state.user} trips={this.state.trips} />)} />
               <Route path="/worldview" component={
                 () => (<Worldview user={this.state.user} />)} />
             </div>
