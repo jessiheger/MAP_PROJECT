@@ -36,22 +36,5 @@ router.post('/', function(req, res) {
     })
 });
 
-// router.post('/', function(req, res) {
-//   console.log('POST A DESTINATION', req.body);
-//   // res.send('trip post stub');
-//   User.findById( req.body.user.id ).then(user => {
-//   	console.log('found a user', user);
-//     console.log('user.trip:', user.trips)
-//     User.findById( user.trips ).then(trip => {
-//       Destination.create( req.body.newDestination ).then(myNewDest => {
-//         console.log("New Dest Looks likes:", myNewDest); // GETS HERE BUT NO FURTHER
-//         user.trip.push(myNewDest);
-//         console.log("pushed the new destination");
-
-//     })
-  	
-//   });
-// });
-// });
 
 module.exports = router;

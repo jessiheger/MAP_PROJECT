@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // connected to routes/auth.js and HandleSubmit() in signup.js
 app.use('/trip', require('./routes/trip'));
 app.use('/destination', require('./routes/destination'));
-app.use('/user', require('./routes/triplist'));
+app.use('/profile', require('./routes/triplist'));
 app.use('/viewtrip', require('./routes/viewtrip'));
 
 

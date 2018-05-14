@@ -23,7 +23,7 @@ class TripList extends Component {
 
 		let mappedTrips = properArray.map( (trip, id) => (
 			// <p onClick={(e) => this.handleClick(e)} id={id} key={id}>{trip.name}</p>
-				<li><Link to="/viewtrip" tripid={this.state.tripId} id={id} key={id} tripname={this.props.trips.id}>{trip.name} </Link></li>
+				<li><Link to="/viewtrip" tripId={trip.id} id={id} key={id} tripname={this.props.trips.id}>{trip.name} </Link></li>
 			))
 		return (
 			<div> 
