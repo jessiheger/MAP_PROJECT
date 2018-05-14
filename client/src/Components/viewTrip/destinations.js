@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 
 class DestinationSection extends Component {
-	constructor(props) {
-		super(props)
-	};
+    constructor(props) {
+        super(props)
+    };
 
-	render() {
-		return (
-			<div className="DestinationContent">
-				<h2>hello World</h2>
-			</div>
-		)
-	}
+    render() {
+        return (
+            <div className="DestinationContent">
+               {/*} <h2>{this.props.trip.name}</h2> ALEX'S EDITS, DOESN'T WORK */} 
+            </div>
+        )
+    }
 }
 
 

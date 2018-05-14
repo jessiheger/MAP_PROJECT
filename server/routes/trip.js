@@ -11,8 +11,13 @@ var Trip 			= require('../models/tripmodel');
 	//TODO: Query tripmodel for list of trips
 router.get('/:id', function(req, res) {
   console.log('req.params:', req.params);
-  Trip.findById(req.params.id, (err, trip) => {
+  Trip.findById(req.params.id)
+  .populate('destinations')
+  .exec((err, trip) => {
     res.send(trip);
+  })
+  .catch(err => {
+    console.log('error', err);
   })
 });
 

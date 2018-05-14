@@ -17,18 +17,17 @@ class TripList extends Component {
 		})
 	}
 
-
 	render() {
 		let properArray = Array.from(this.props.trips)
+	console.log('user is', this.props.user)
+		let mappedTrips = properArray.map( (trip, idx) => {
+			let link = "/trip/" + trip._id + "/" + this.props.user.id;
+			return <li key={idx}><Link to={link}>{trip.name} </Link></li>
+		})
 
-		let mappedTrips = properArray.map( (trip, id) => (
-			// <p onClick={(e) => this.handleClick(e)} id={id} key={id}>{trip.name}</p>
-				<li><Link to="/viewtrip" tripId={trip.id} id={id} key={id} tripname={this.props.trips.id}>{trip.name} </Link></li>
-			))
 		return (
 			<div> 
 				<p>Here are all the trips you've logged so far:</p>
-				{/*<p>The selected trip id is {this.state.tripId}</p> */}
 				<ul>
 				{mappedTrips}
 				</ul>

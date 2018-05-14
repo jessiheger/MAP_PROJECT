@@ -35,11 +35,11 @@ class App extends Component {
     let token = localStorage.getItem('mernToken');
     if(token){
       console.log('token found in LS', token)
-      axios.post('/auth/me/from/token', {
+      axios.post('http://localhost:3001/auth/me/from/token', {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       .then(response => {
-        console.log('SUCCESS!', response);
+        console.log('SUCCESS, Found user!', response);
         this.setState({
           user: response.data.user,
           trips: response.data.user.trips
@@ -63,10 +63,11 @@ class App extends Component {
     }
 }
 
+//this is what is supposed to have the user's trip list automatically update... IS NOT WORKING
 refetchData = () => {
   axios.get(`http://localhost:3001/profile/${this.state.user.id}`)
     .then(res => {
-      console.log("Sucess fetching data!", res.data.trips);
+      console.log("Success fetching data!", res.data.trips);
       this.setState({
         user: res.data.user,
         trips: res.data.trips
@@ -94,8 +95,7 @@ refetchData = () => {
                 () => (<Profile user={this.state.user} trips={this.state.trips} reFetchData={this.refetchData}/>)} />
               <Route path="/newtrip" component={
                   () => (<Trip user={this.state.user} reFetchData={this.refetchData} />)} />
-              <Route path="/viewtrip" component={
-                  () => (<ViewTripContainer user={this.state.user} trips={this.state.trips} />)} />
+              <Route path="/trip/:tripId/:userId" component={ViewTripContainer} />
               <Route path="/worldview" component={
                 () => (<Worldview user={this.state.user} />)} />
             </div>

@@ -44,7 +44,7 @@ class DestinationForm extends Component {
 	onSubmit = (e) => {
 		e.preventDefault();
 		console.log('form was submitted', this.state);
-		axios.post('/destination', {newDestination: this.state, user: this.props.user } ) 
+		axios.post('/destination', {newDestination: this.state, user: this.props.user, tripId: this.state.trip } ) 
 		.then(result => {
 			console.log("destination SUCCESS!", result)
 			this.props.updateTrip(this.state.trip);

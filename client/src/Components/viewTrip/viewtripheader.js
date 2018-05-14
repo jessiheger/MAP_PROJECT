@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 
 class ViewTripHeader extends Component {
 	constructor(props) {
 		super(props)
-		console.log("this.props looks like", this.props);
-		console.log("this.props.tripId:", this.props.tripId)
+		console.log("this.props.tripInfo", this.props.tripInfo);
+		// console.log("this.props.tripId:", this.props.tripId)
 	}
+
 	render() {
 		return(
 			<div>
-				<h1>{this.props.tripId}</h1>
+				<h1>UGH</h1>
 			</div>
 		);
 	}
