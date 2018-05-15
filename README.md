@@ -63,4 +63,11 @@ This app uses the Mapbox GL JS API to render the maps on the app and style them.
 
 ### Future fixes/features
 
--  
+-  Add geocoding API so that a user's lat/long coordinates can be added as a marker to the Worldview Map (on Home page) and each of the View Trip Maps (upon click of a trip in the user's Profile).
+-  Allow user to add multiple destinations to one trip.
+- Fix the ability for the trip list on the profile to update automatically once the user adds a New Trip.
+- Fix the mapping of destination info on View Trip (upon click of a trip in the user's Profile); the app currently does not see the objects as objects.
+- Add markers of all user's desintations (from all trips) on the Home Page World Map.
+- Add "fly over" Mapbox functionality to the View Trip Map so that as user is scrolling through the destination content, the map changes dynamically.
+- Add ability for a user to share trip info with another non-user (allow it to function as a public travel blog).
+
