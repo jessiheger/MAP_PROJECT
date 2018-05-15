@@ -70,4 +70,5 @@ This app uses the Mapbox GL JS API to render the maps on the app and style them.
 - Add markers of all user's desintations (from all trips) on the Home Page World Map.
 - Add "fly over" Mapbox functionality to the View Trip Map so that as user is scrolling through the destination content, the map changes dynamically.
 - Add ability for a user to share trip info with another non-user (allow it to function as a public travel blog).
+- Allow the user to upload at least one picture with each desination (using Cloudinary API) so that pictures can be included in the destination section (on View Trip page), and potentially if you clicked on a marker on the WorldView Map (on Home Page) the landmark or city would pop up along with a picture you added.
 
