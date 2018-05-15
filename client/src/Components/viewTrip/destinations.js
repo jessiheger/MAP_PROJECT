@@ -11,8 +11,7 @@ class DestinationSection extends Component {
         // });
             return (
                 <div className="DestinationContent">
-                    <p>Lorem ipsum dolor sit amet</p>
-                    {this.props.tripDestinations}
+                    <p>{this.props.tripDestinations}</p>
                 </div>
             )
         }

@@ -4,6 +4,8 @@ import TripMap from './tripmap';
 import DestinationSection from './destinations';
 import axios from 'axios';
 import { SERVER_URL } from '../../constants';
+import { Grid, Row, Col } from 'react-bootstrap';
+
 
 
 var tripInfo;
@@ -31,29 +33,26 @@ class ViewTripContainer extends Component {
 	}
 
 	render() {
-		// let berries = tripDestinations.map((item) => {
-		// 	return <DestinationSection destinationInfo ={item} />
-		// })
 		return(
 			<div>
-				<ViewTripHeader tripInfo={tripInfo} tripId={this.props.match.params.tripId}/>
-				<TripMap />
-				<DestinationSection tripDestinations={tripDestinations} />
-			</div>
-			)
+				<Grid>
+					<Row className="show-grid">
+						<Col xs={12}>
+							<ViewTripHeader tripInfo={tripInfo} tripId={this.props.match.params.tripId}/>
+						</Col>
+					</Row>
+					<Row className="show-grid">
+		    			<Col md={6} mdPush={6}>
+		      				<DestinationSection tripDestinations={tripDestinations} />
+		    			</Col>
+		   				 <Col md={6} mdPull={6}>
+		      				<TripMap />
+		    			</Col>
+		  			</Row>
+		  		</Grid>
+  			</div>
+		)
 	}
-
-//ALEX'S ADDITION. SHOULD REPLACE ^ 
-	// render() {
- //        let trip = this.state.trips.filter((trip) => {trip.id === this.props.match.params.tripId})
- //        return(
- //            <div>
- //                <ViewTripHeader trip={trip}/>
- //                <TripMap trip={trip} />
- //                <DestinationSection trip={trip}/>
- //            </div>
- //            )
- //    }
 }
 
 

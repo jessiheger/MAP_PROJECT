@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import { SERVER_URL } from '../constants';
+import { Grid, Row, Col, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
 class DestinationForm extends Component {
 	constructor(props) {
@@ -56,42 +57,57 @@ class DestinationForm extends Component {
 	render(){
 		return (
 			<div className='DestinationForm'>
-				<form onSubmit={this.onSubmit}>
-					<div>
-						<label>Landmark</label>
-						<input
+				<Form horizontal onSubmit={this.onSubmit}>
+					<FormGroup controlId="formHorizontalLandmark">
+						<Col componentClass={ControlLabel} sm={4}>Landmark</Col>
+						<Col xs={6}>
+							<FormControl
 							autoFocus= {this.props.autoFocus}
 							onChange={this.onLandmarkChange}
 							placeholder="Taj Mahal"
 							type="text"
 							value={(this.state.landmark)} />
-					</div>
-					<div>
-						<label>City</label>
-						<input
+						</Col>
+					</FormGroup>
+					<FormGroup controlId="formHorizontalCity">
+						<Col componentClass={ControlLabel} sm={4}>City</Col>
+						<Col xs={6}>
+							<FormControl
+							autoFocus= {this.props.autoFocus}
 							onChange={this.onCityChange}
 							placeholder="Agra"
 							type="text"
 							value={(this.state.city)} />
-					</div>
-					<div>
-						<label>State</label>	
-						<input
+						</Col>
+					</FormGroup>
+					<FormGroup controlId="formHorizontalState">
+						<Col componentClass={ControlLabel} sm={4}>State</Col>
+						<Col xs={6}>
+							<FormControl
+							autoFocus= {this.props.autoFocus}
 							onChange={this.onStateChange}
 							placeholder="Uttar Pradesh"
 							type="text"
 							value={(this.state.state)} />
-					</div>
-					<div>
-						<label>Country</label>	
-						<input
+						</Col>
+					</FormGroup>
+					<FormGroup controlId="formHorizontalCountry">
+						<Col componentClass={ControlLabel} sm={4}>Country</Col>
+						<Col xs={6}>
+							<FormControl
+							autoFocus= {this.props.autoFocus}
 							onChange={this.onCountryChange}
 							placeholder="India"
 							type="text"
 							value={(this.state.country)} />
-					</div>
-					<Button type='submit'>Add Destination</Button>
-				</form>
+						</Col>
+					</FormGroup>
+					<FormGroup>
+					    <Col smOffset={2} sm={6}>
+					      	<Button type="submit" >Save Destination</Button>
+					    </Col>
+					</FormGroup>
+				</Form>	
 			</div>
 		)
 	}

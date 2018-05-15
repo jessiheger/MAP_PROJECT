@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { SERVER_URL } from '../constants';
+import { Form, FormGroup, Col, Button, FormControl, ControlLabel } from 'react-bootstrap'
 
 // import {Tabs, Tab} from 'material-ui/Tabs';
 
@@ -48,17 +49,34 @@ class Login extends Component {
 			return (<Redirect to="/profile" />);
 		}
 		return(
-			<form onSubmit={this.handleLoginSubmit}>                     
-			<div>                         
-			<input type='text' name='Email' placeholder='email' value={this.state.email} onChange={this.handleEmailChange} />                     
-			</div>                     
-			<div>                         
-			<input type='password' name='Password' placeholer='password' value={this.state.password} onChange={this.handlePasswordChange} />                     
-			</div>                    
-			 <div>                         
-			 <input type='submit' value='Login' />                     
-			 </div>                 
-			 </form>
+			<div>
+			<Form horizontal onSubmit={this.handleLoginSubmit}>
+				<FormGroup controlId="formHorizontalEmail">
+				    <Col componentClass={ControlLabel} sm={2}>Email</Col>
+					    <Col sm={10}>
+					    	<FormControl type="email" placeholder="Email" name='Email' value={this.state.email} onChange={this.handleEmailChange}/>
+					    </Col>
+				</FormGroup>
+				<FormGroup controlId="formHorizontalPassword">
+				    <Col componentClass={ControlLabel} sm={2}>
+				      Password
+				    </Col>
+				    <Col sm={10}>
+				      	<FormControl type="password" placeholder="Password" name='Password' value={this.state.password} onChange={this.handlePasswordChange}/>
+				    </Col>
+				</FormGroup>
+				<FormGroup>
+				    <Col smOffset={2} sm={10}>
+				      	<Button type="submit" value='login' >Log in</Button>
+				    </Col>
+				</FormGroup>
+			</Form>
+			</div>
+
+
+
+
+
 		);
 	}
 }

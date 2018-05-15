@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import { SERVER_URL } from '../constants';
-
+import { Grid, Row, Col, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
 
 class TripNameForm extends Component {
@@ -44,17 +44,19 @@ class TripNameForm extends Component {
 	render(){
 		return (
 			<div className='TripNameForm'>
-				<form onSubmit={this.onSubmit}>
-					<div>
-						<label><h1>Give your trip a name: </h1></label>
-						<input
-							onChange={this.onNameChange}
-							placeholder="Trip to India!"
-							type="text"
-							value={(this.state.name)} />
-					</div>
-					<Button type='submit'>Create Trip</Button>
-				</form>
+				<Form horizontal onSubmit={this.onSubmit}>
+					<FormGroup controlId="formHorizontalTripName">
+						<Col componentClass={ControlLabel} sm={4}>Name Your Trip</Col>
+							<Col xs={6}>
+								<FormControl onChange={this.onNameChange} placeholder="Best Trip Ever!" type="text" value={(this.state.name)} />
+							</Col>
+					</FormGroup>
+					<FormGroup>
+					    <Col smOffset={2} sm={6}>
+					      	<Button type="submit" >Create Trip</Button>
+					    </Col>
+					</FormGroup>
+				</Form>	
 			</div>		
 		)
 	}
