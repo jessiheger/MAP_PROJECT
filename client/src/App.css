@@ -33,6 +33,12 @@ a, p, h2, label {
 
 }
 
+h1 {
+  font-family: 'Lobster Two', cursive;
+  text-align: center;
+  color: #F4EEE7;
+}
+
 /* Link creates a <a> in Nav.js */
 Nav a {
   margin: 10px;
@@ -90,6 +96,10 @@ label {
 
 .DestinationContent {
   float: left;
+  background-color: yellow;
+  height: 600px;
+  width: 400px;
+  display: inline;
 }
 
 .TripMap {

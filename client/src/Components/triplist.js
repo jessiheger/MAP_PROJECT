@@ -5,17 +5,17 @@ import { Link } from 'react-router-dom';
 class TripList extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			tripId: null
-		};
-		this.handleClick = this.handleClick.bind(this);
+		// this.state = {
+		// 	tripId: null
+		// };
+		// this.handleClick = this.handleClick.bind(this);
 	}
 
-	handleClick(e) {
-		this.setState({
-			tripId: e.target.id
-		})
-	}
+	// handleClick(e) {
+	// 	this.setState({
+	// 		tripId: e.target.id
+	// 	})
+	// }
 
 	render() {
 		let properArray = Array.from(this.props.trips)

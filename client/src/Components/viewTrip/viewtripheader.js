@@ -12,7 +12,7 @@ class ViewTripHeader extends Component {
 	render() {
 		return(
 			<div>
-				<h1>UGH</h1>
+				<h1>{this.props.tripInfo}</h1>
 			</div>
 		);
 	}

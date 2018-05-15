@@ -12,7 +12,7 @@ class Profile extends Component {
 				<div className="profileDiv">
 					<h2>Hi, {this.props.user.name}!</h2>
 					{ this.props.trips.length > 0 ? 
-						<TripList user={this.props.user} trips={this.props.trips} reFetchData={this.refetchData} /> : 
+						<TripList user={this.props.user} trips={this.props.trips} /> : 
 						<p>You don't have any trips yet :( Go to New Trip to add a trip! </p>}
 				</div>
 			);

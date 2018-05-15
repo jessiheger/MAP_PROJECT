@@ -10,10 +10,8 @@ var Destination 	= require('../models/destinationmodel');
 
 // Renders page to add a trip
 router.get('/', function(req, res) {
-	//TODO: Query tripmodel for list of trips
 	res.send({ landmark: "Space Needle", city: "Seattle", state: "Washington", country: "USA", Image: "MYIMAGE" });
 });
-
 
 // Adds a trip to a user 
 // Save destination. Add destination to trip. Add trip to user

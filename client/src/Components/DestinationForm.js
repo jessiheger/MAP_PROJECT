@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
-
+import { SERVER_URL } from '../constants';
 
 class DestinationForm extends Component {
 	constructor(props) {
@@ -44,7 +44,7 @@ class DestinationForm extends Component {
 	onSubmit = (e) => {
 		e.preventDefault();
 		console.log('form was submitted', this.state);
-		axios.post('/destination', {newDestination: this.state, user: this.props.user, tripId: this.state.trip } ) 
+		axios.post(SERVER_URL+'/destination', {newDestination: this.state, user: this.props.user, tripId: this.state.trip } ) 
 		.then(result => {
 			console.log("destination SUCCESS!", result)
 			this.props.updateTrip(this.state.trip);

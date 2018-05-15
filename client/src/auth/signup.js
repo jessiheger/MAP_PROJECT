@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import {SERVER_URL } from '../constants';
+
 
 class Signup extends Component {
 	constructor(props){
@@ -26,7 +28,7 @@ class Signup extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		console.log('form was submitted', this.state);
-		axios.post('/auth/signup', this.state)
+		axios.post(SERVER_URL+'/auth/signup', this.state)
 		.then(result => {
 			console.log("SUCCESS!", result.data)
 			localStorage.setItem('mernToken', result.data.token);

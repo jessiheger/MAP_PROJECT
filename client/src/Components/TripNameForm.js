@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
+import { SERVER_URL } from '../constants';
+
 
 
 class TripNameForm extends Component {
@@ -26,13 +28,12 @@ class TripNameForm extends Component {
 	onSubmit = (e) => {
 		e.preventDefault();
 			console.log('form was submitted', this.state);
-		axios.post('/trip', {newTrip: this.state, user: this.props.user} ) // Does not work if changed to "http://localhost..."
+		axios.post(SERVER_URL+'/trip', {newTrip: this.state, user: this.props.user} )
 		.then(res => {
 			console.log("trip name SUCCESS!", res.data);
 			this.setState({
 				trip: res.data
 			})
-			this.props.reFetchData();
 			let tripDataFromBE = res.data
 			this.props.updateTrip(res.data);
 		})

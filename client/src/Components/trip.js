@@ -4,6 +4,8 @@ import TripNameForm from './TripNameForm';
 import DestinationForm from './DestinationForm';
 import React, { Component } from 'react';
 import axios from 'axios';
+import { SERVER_URL } from '../constants';
+
 
 // This is the container for destination and trip name forms
 // This is the /newtrip page 
@@ -33,7 +35,7 @@ class Trip extends Component {
 			);
 		} 
 		else {
-			axios.get(`http://localhost:3001/trip/${this.state.tripId}`)
+			axios.get(SERVER_URL+`/trip/${this.state.tripId}`)
 	      .then(res => {
 	        console.log('res:',res);
 	        if (res.data.destinations !== undefined) {

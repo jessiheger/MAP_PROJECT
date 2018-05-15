@@ -6,12 +6,16 @@ class DestinationSection extends Component {
     };
 
     render() {
-        return (
-            <div className="DestinationContent">
-               {/*} <h2>{this.props.trip.name}</h2> ALEX'S EDITS, DOESN'T WORK */} 
-            </div>
-        )
-    }
+        // let mappedDestinations = this.props.tripDestinations.map( (item, idx) => {
+        //     return <p key={idx}>{item} </p>
+        // });
+            return (
+                <div className="DestinationContent">
+                    <p>Lorem ipsum dolor sit amet</p>
+                    {this.props.tripDestinations}
+                </div>
+            )
+        }
 }
 
 

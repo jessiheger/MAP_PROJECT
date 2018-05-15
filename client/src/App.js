@@ -13,7 +13,7 @@ import Trip from './Components/trip';
 import Worldview from './Components/worldview';
 import ViewTripContainer from './Components/viewTrip/ViewTripContainer';
 import { Navbar } from 'react-bootstrap';
-
+import { SERVER_URL } from './constants';
 
 
 class App extends Component {
@@ -35,7 +35,7 @@ class App extends Component {
     let token = localStorage.getItem('mernToken');
     if(token){
       console.log('token found in LS', token)
-      axios.post('http://localhost:3001/auth/me/from/token', {
+      axios.post(SERVER_URL + '/auth/me/from/token', {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       .then(response => {
@@ -64,19 +64,19 @@ class App extends Component {
 }
 
 //this is what is supposed to have the user's trip list automatically update... IS NOT WORKING
-refetchData = () => {
-  axios.get(`http://localhost:3001/profile/${this.state.user.id}`)
-    .then(res => {
-      console.log("Success fetching data!", res.data.trips);
-      this.setState({
-        user: res.data.user,
-        trips: res.data.trips
-      })
-    })
-    .catch(err => {
-      console.log("error", err);
-    });
-}
+// refetchData = () => {
+//   axios.get(`${SERVER_URL}/profile/${this.state.user.id}`)
+//     .then(res => {
+//       console.log("Success fetching data!", res.data.trips);
+//       this.setState({
+//         user: res.data.user,
+//         trips: res.data.trips
+//       })
+//     })
+//     .catch(err => {
+//       console.log("error", err);
+//     });
+// }
 
   render() {
     return (
@@ -92,7 +92,7 @@ refetchData = () => {
                 () => (<Signup user={this.state.user} updateUser={this.getUser} />) 
               } /> 
               <Route path="/profile" component={
-                () => (<Profile user={this.state.user} trips={this.state.trips} reFetchData={this.refetchData}/>)} />
+                () => (<Profile user={this.state.user} trips={this.state.trips}/>)} />
               <Route path="/newtrip" component={
                   () => (<Trip user={this.state.user} reFetchData={this.refetchData} />)} />
               <Route path="/trip/:tripId/:userId" component={ViewTripContainer} />
