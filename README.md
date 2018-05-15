@@ -1,6 +1,4 @@
-README.md
-
-## Map Project
+## Travel Journal
 
 **[Click here to visit site](#)**
 
