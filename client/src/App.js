@@ -64,19 +64,19 @@ class App extends Component {
 }
 
 //this is what is supposed to have the user's trip list automatically update... IS NOT WORKING
-// refetchData = () => {
-//   axios.get(`${SERVER_URL}/profile/${this.state.user.id}`)
-//     .then(res => {
-//       console.log("Success fetching data!", res.data.trips);
-//       this.setState({
-//         user: res.data.user,
-//         trips: res.data.trips
-//       })
-//     })
-//     .catch(err => {
-//       console.log("error", err);
-//     });
-// }
+refetchData = () => {
+  axios.get(`${SERVER_URL}/profile/${this.state.user.id}`)
+    .then(res => {
+      console.log("Success fetching data!", res.data);
+      this.setState({
+        user: res.data.user,
+        trips: res.data.trips
+      })
+    })
+    .catch(err => {
+      console.log("error", err);
+    });
+}
 
   render() {
     return (

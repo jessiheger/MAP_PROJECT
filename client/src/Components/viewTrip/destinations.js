@@ -6,12 +6,13 @@ class DestinationSection extends Component {
     };
 
     render() {
-        // let mappedDestinations = this.props.tripDestinations.map( (item, idx) => {
-        //     return <p key={idx}>{item} </p>
-        // });
+        let destArr = this.props.tripDestinations || [];
+        let mappedDestinations = destArr.map( (item, idx) => {
+            return <p key={idx}>{item.landmark} ({item.country})</p>
+        });
             return (
                 <div className="DestinationContent">
-                    <p>{this.props.tripDestinations}</p>
+                    {mappedDestinations}
                 </div>
             )
         }

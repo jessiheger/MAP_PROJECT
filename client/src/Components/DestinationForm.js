@@ -48,7 +48,8 @@ class DestinationForm extends Component {
 		axios.post(SERVER_URL+'/destination', {newDestination: this.state, user: this.props.user, tripId: this.state.trip } ) 
 		.then(result => {
 			console.log("destination SUCCESS!", result)
-			this.props.updateTrip(this.state.trip);
+			// this.props.updateTrip(this.state.trip);
+			this.props.refetchData();
 		})
 		.catch(err => {
 			console.log("ERROR", err)

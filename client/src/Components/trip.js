@@ -10,8 +10,6 @@ import { SERVER_URL } from '../constants';
 // This is the container for destination and trip name forms
 // This is the /newtrip page 
 
-let trips;
-
 class Trip extends Component {
 	constructor(props){
 		super(props)
@@ -23,36 +21,38 @@ class Trip extends Component {
 
 	getTrip = (trip) => {
 		console.log('getTrip:', trip)
-		this.setState({ tripId: trip._id, tripName: trip.name})
+		this.setState({ tripId: trip._id, tripName: trip.name}, () => {
+			console.log('refresh data');
+			// this.props.reFetchData();
+		});
 	}
 
 	render() {
 		if (this.state.tripId === '') {
 			return(
 				<div>
-					<TripNameForm user={this.props.user} updateTrip={this.getTrip} reFetchData={this.props.reFetchData} />
+					<TripNameForm user={this.props.user} updateTrip={this.getTrip} />
 				</div>
 			);
 		} 
-		else {
-			axios.get(SERVER_URL+`/trip/${this.state.tripId}`)
-	      .then(res => {
-	        console.log('res:',res);
-	        if (res.data.destinations !== undefined) {
-		        trips = res.data.destinations.map( destination => {
-		          return (
-		            <DestinationForm user={this.props.user} trip={res.data._id} landmark={destination.landmark} city={destination.city} state={destination.state} country={destination.country} updateTrip={this.getTrip} />
-		          )
-		        })
-		      }
-	      })
-	    }
+		// else {
+		// 	axios.get(SERVER_URL+`/trip/${this.state.tripId}`)
+	 //      .then(res => {
+	 //        console.log('res:',res);
+	 //        if (res.data.destinations !== undefined) {
+		//         trips = res.data.destinations.map( destination => {
+		//           return (
+		//             <DestinationForm user={this.props.user} trip={res.data._id} landmark={destination.landmark} city={destination.city} state={destination.state} country={destination.country} updateTrip={this.getTrip} />
+		//           )
+		//         })
+		//       }
+	 //      })
+	 //    }
 
 			return(
 				<div>
-					<TripNameForm user={this.props.user} updateTrip={this.getTrip} />
-					{trips}
-					<DestinationForm user={this.props.user} trip={this.state.tripId} updateTrip={this.getTrip} />
+					<h1>{this.state.tripName}</h1>
+					<DestinationForm refetchData={this.props.reFetchData} user={this.props.user} trip={this.state.tripId} updateTrip={this.getTrip} />
 				</div>
 			);
 		}

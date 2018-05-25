@@ -14,25 +14,19 @@ router.get('/:id/trips', function(req, res){
 	})
 });
 
-router.get('/profile/:userId', function(req, res) {
+router.get('/:userId', function(req, res) {
 	console.log(req.params.userId);
-	User.findById(req.params.userId, (err, userParam) => {
+	User.findById(req.params.userId)
+	.populate('trips')
+	.exec((err, user) => {
 		if (err){
-			console.log("error is", err)
+			console.log("error is", err);
+			res.status(500).send('uh oh');
 		}
 		else {
-			console.log("this is the user Param", userParam);
+			console.log("this is the user trips", user.trips);
+			res.json({user: user, trips: user.trips})
 		};
-		let tripIds = userParam.trips;
-		Trip.find(tripIds, (err, trips) => {
-			if(err){
-				console.log("error", err)
-			}
-			else {
-				console.log('got the trips!', trips)
-			}
-			res.json({user: userParam, trips: trips})
-		});
 	});
 });
 

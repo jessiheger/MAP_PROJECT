@@ -27,15 +27,16 @@ class TripNameForm extends Component {
 
 	onSubmit = (e) => {
 		e.preventDefault();
-			console.log('form was submitted', this.state);
+		console.log('form was submitted', this.state);
 		axios.post(SERVER_URL+'/trip', {newTrip: this.state, user: this.props.user} )
 		.then(res => {
 			console.log("trip name SUCCESS!", res.data);
 			this.setState({
 				trip: res.data
-			})
-			let tripDataFromBE = res.data
-			this.props.updateTrip(res.data);
+			}, () => {
+				this.props.updateTrip(res.data);
+			});
+			
 		})
 		.catch(err => {
 			console.log("ERROR", err)
