@@ -4,12 +4,6 @@ import { Redirect } from 'react-router-dom';
 import { SERVER_URL } from '../constants';
 import { Form, FormGroup, Col, Button, FormControl, ControlLabel } from 'react-bootstrap'
 
-// import {Tabs, Tab} from 'material-ui/Tabs';
-
-// MATERIAL UI
-// import RaisedButton from 'material-ui/RaisedButton';
-// import TextField from 'material-ui/TextField';
-
 class Login extends Component {
 	constructor(props){
 		super(props);
